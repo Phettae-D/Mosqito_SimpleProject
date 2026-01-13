@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +33,8 @@ public class PlayerControl : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
+
         Vector2 input = moveAction.ReadValue<Vector2>();
         if (input != Vector2.zero)
         {
