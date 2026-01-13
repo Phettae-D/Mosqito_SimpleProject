@@ -8,17 +8,17 @@ public class TermalCamControl : MonoBehaviour
     private void Update()
     {
         transform.LookAt(target.transform);
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    if (!termalmode)
-        //    {
-        //        termalmode = true;
-        //    }
-        //    else
-        //    {
-        //        termalmode = false;
-        //    }
-        //    termalobj.SetActive(termalmode);
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!termalmode)
+            {
+                termalmode = true;
+            }
+            else
+            {
+                termalmode = false;
+            }
+            termalobj.SetActive(termalmode);
+        }
     }
 }
