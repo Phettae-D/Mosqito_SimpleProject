@@ -13,23 +13,20 @@ public class PlayerMain : MonoBehaviour
     public UnityEngine.XR.InputDevice _rightController;
     public UnityEngine.XR.InputDevice _leftController;
     public UnityEngine.XR.InputDevice _HMD;
-    public Slider BloodBar,NectarBar;
+    public Slider BloodBar;
 
     public Rigidbody rb;
 
     public GameObject mainCamera, CamRot;
-    public GameObject termalobj,ui;
+    public GameObject termalobj;
 
     public float Speed, FlyUpSpeed,CamRotSpeed;
     public float Current_Blood, Max_Blood;
-    public float Current_Nec, Max_Nec;
 
-    public bool R_primaryValue,L_primaryValue, R_secondary, L_secondary, R_gripValue,L_gripValue, R_triggerValue, L_triggerValue,IsMoveL,IsMoveR;
+    public bool R_primaryValue,L_primaryValue, R_gripValue,L_gripValue, R_triggerValue, L_triggerValue,IsMoveL,IsMoveR;
     public bool termalmode,canmove;
-    public bool isMate;
 
     public Vector2 L_moveInput, R_moveInput;
-
     private void Awake()
     {
         canmove = true;
@@ -37,44 +34,15 @@ public class PlayerMain : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         BloodBar.maxValue = Max_Blood;
         BloodBar.value = Current_Blood;
-        NectarBar.maxValue = Max_Nec;
-        NectarBar.value = Current_Nec;
     }
-
     void Update()
     {
         checkinput();
         termalobj.SetActive(R_triggerValue);
-        Move(L_moveInput);
     }
-
     private void FixedUpdate()
     {
-
-        ui.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.GetComponent<Pond>())
-        {
-            if (Current_Blood >= Max_Blood&&isMate)
-            {
-                if (R_primaryValue)
-                {
-                    Current_Blood = 0;
-                    BloodBar.value = Current_Blood;
-                    GameManager.instance.setscore(other.gameObject.GetComponent<Pond>().Score);
-                }
-            }
-        }
-        if (other.gameObject.GetComponent<Wild_Mosquitos>().Gender == Wild_Mosquitos.genderlist.male && !isMate)
-        {
-            if (R_primaryValue)
-            {
-                isMate = true;  
-            }
-        }
+       Move(L_moveInput);
     }
 
     public void checkinput()
@@ -97,14 +65,6 @@ public class PlayerMain : MonoBehaviour
         {
 
         }
-        if (_rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out R_secondary) && R_secondary)
-        {
-
-        }
-        if (_leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out L_secondary) && L_secondary)
-        {
-
-        }
         if (_rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out R_primaryValue) && R_primaryValue)
         {
 
@@ -123,12 +83,14 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
+
     public void Move(Vector2 direction)
     {
         if (canmove)
         {
             Vector3 forward = mainCamera.transform.forward;
             Vector3 right = mainCamera.transform.right;
+
             forward.y = 0;
             forward.Normalize();
             transform.Translate(0, R_moveInput.y * Time.deltaTime * FlyUpSpeed, 0);
@@ -138,19 +100,13 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
+
     public void Drink()
     {
         Current_Blood += Time.deltaTime;
         BloodBar.value = Current_Blood;
         canmove = !R_primaryValue;
     }
-    public void DrinkNectar()
-    {
-        Current_Nec += Time.deltaTime;
-        NectarBar.value = Current_Nec;
-        canmove = !R_primaryValue;
-    }
-
     private void InitializeInputDevices()
     {
 
