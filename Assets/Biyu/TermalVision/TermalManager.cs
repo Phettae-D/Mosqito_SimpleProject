@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.Progress;
-
 public class TermalManager : MonoBehaviour
 {
     public List<GameObject> termalobj;
