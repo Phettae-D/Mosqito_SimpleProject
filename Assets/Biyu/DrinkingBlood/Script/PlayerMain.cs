@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 
+using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.iOS;
+using UnityEngine.tvOS;
 using UnityEngine.UI;
+using Unity.XR.CoreUtils;
 public class PlayerMain : MonoBehaviour
 {
     public static PlayerMain instance;
