@@ -47,7 +47,7 @@ public class PlayerMain : MonoBehaviour
     private void FixedUpdate()
     {
 
-        ui.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
+        ui.transform.eulerAngles = new Vector3(0, mainCamera.transform.eulerAngles.y, 0);
     }
 
     private void OnTriggerStay(Collider other)
