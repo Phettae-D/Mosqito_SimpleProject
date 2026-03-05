@@ -1,10 +1,6 @@
 using System.Collections.Generic;
-
-using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.iOS;
-using UnityEngine.tvOS;
 public class Input : MonoBehaviour
 {
     public UnityEngine.XR.InputDevice _rightController;

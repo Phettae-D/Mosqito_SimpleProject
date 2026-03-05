@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Fly
+  - Jar_Hat
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Termal
-  - 
+  - Ground
   - 
   - 
   - 
