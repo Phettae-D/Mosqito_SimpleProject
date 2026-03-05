@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+<<<<<<< HEAD
   - Flower
+=======
+  - Fly
+  - Jar_Hat
+>>>>>>> 81670217a2844671281d4b8a0fdae7e5439bde41
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Termal
-  - 
+  - Ground
   - 
   - 
   - 

@@ -131,11 +131,16 @@ MonoBehaviour:
   m_PrefilterScreenSpaceIrradiance: 0
   m_PrefilterNativeRenderPass: 1
   m_PrefilterUseLegacyLightmaps: 0
+<<<<<<< HEAD
   m_PrefilterBicubicLightmapSampling: 0
   m_PrefilterReflectionProbeRotation: 0
   m_PrefilterReflectionProbeBlending: 0
   m_PrefilterReflectionProbeBoxProjection: 0
   m_PrefilterReflectionProbeAtlas: 0
+=======
+  m_PrefilterReflectionProbeBlending: 1
+  m_PrefilterReflectionProbeBoxProjection: 1
+>>>>>>> 81670217a2844671281d4b8a0fdae7e5439bde41
   m_ShaderVariantLogLevel: 0
   m_ShadowCascades: 0
   m_Textures:
