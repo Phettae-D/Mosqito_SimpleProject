@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerMain : MonoBehaviour
 {
     public static PlayerMain instance;
@@ -22,7 +23,7 @@ public class PlayerMain : MonoBehaviour
 
     public bool R_primaryValue,L_primaryValue, R_secondary, L_secondary, R_gripValue,L_gripValue, R_triggerValue, L_triggerValue,IsMoveL,IsMoveR;
     public bool termalmode,canmove;
-    public bool isMate;
+    public bool isMate,Death,RestartAble;
 
     public Vector2 L_moveInput, R_moveInput;
 
@@ -40,8 +41,11 @@ public class PlayerMain : MonoBehaviour
     void Update()
     {
         checkinput();
-        termalobj.SetActive(R_triggerValue);
-        Move(L_moveInput);
+        if (!Death||GameManager.instance.time>0)
+        {
+            termalobj.SetActive(R_triggerValue);
+            Move(L_moveInput);
+        }
     }
 
     private void FixedUpdate()
@@ -64,11 +68,14 @@ public class PlayerMain : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.GetComponent<Wild_Mosquitos>().Gender == Wild_Mosquitos.genderlist.male && !isMate)
+        if (other.gameObject.GetComponent<Wild_Mosquitos>())
         {
-            if (R_primaryValue)
+            if (other.gameObject.GetComponent<Wild_Mosquitos>().Gender == Wild_Mosquitos.genderlist.male && !isMate)
             {
-                isMate = true;  
+                if (R_primaryValue)
+                {
+                    isMate = true;
+                }
             }
         }
     }
@@ -117,6 +124,13 @@ public class PlayerMain : MonoBehaviour
         {
 
         }
+        if (RestartAble)
+        {
+            if(R_primaryValue || L_primaryValue || R_secondary || L_secondary || R_gripValue || L_gripValue || R_triggerValue || L_triggerValue || IsMoveL || IsMoveR)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
     public void Move(Vector2 direction)
@@ -136,15 +150,21 @@ public class PlayerMain : MonoBehaviour
 
     public void Drink()
     {
-        Current_Blood += Time.deltaTime;
-        BloodBar.value = Current_Blood;
-        canmove = !R_primaryValue;
+        if(!Death || GameManager.instance.time > 0)
+        {
+            Current_Blood += Time.deltaTime;
+            BloodBar.value = Current_Blood;
+            canmove = !R_primaryValue;
+        }
     }
     public void DrinkNectar()
     {
-        Current_Nec += Time.deltaTime;
-        NectarBar.value = Current_Nec;
-        canmove = !R_primaryValue;
+        if (!Death || GameManager.instance.time > 0)
+        {
+            Current_Nec += Time.deltaTime;
+            NectarBar.value = Current_Nec;
+            canmove = !R_primaryValue;
+        }
     }
 
     private void InitializeInputDevices()

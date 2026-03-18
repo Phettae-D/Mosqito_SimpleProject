@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   - enabled: 1
+    path: Assets/Biyu/TestScene/GAM.unity
+    guid: 3a56fd03a46994648aebe6992b47a48c
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 60a6b8b36f2d8c044a39b1703637403d
   m_configObjects:
