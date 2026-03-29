@@ -39,7 +39,7 @@ public class Jar : MonoBehaviour
             jarHatS.SetActive(true);
             jarHat.SetActive(false);
             hintPos.SetActive(false);
-            GameManager.instance.GetScore(1);
+            GameManagers.instance.GetScore(1);
         }
     }
 }
